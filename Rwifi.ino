@@ -8,6 +8,9 @@
 //network config
 #define UDP_PORT 80
 
+//serial config
+#define BAUD_RATE 115200
+
 //constants for serial communication messages
 #define MSG_CONNECTED "#connected"
 #define MSG_FAIL "#fail"
@@ -68,7 +71,7 @@ bool connect_sta() {
 
 //function to setup the serial adapter
 void serial_setup() {
-  Serial.begin(115200);
+  Serial.begin(BAUD_RATE);
   Serial.setTimeout(SERIALTIMEOUT);
   Serial.println(MSG_INIT);
 }

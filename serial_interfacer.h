@@ -29,12 +29,11 @@ void get_functions(String querystring) {
 }
 
 
-
-
 //Serial Event function, is called, wehen serial data is received
 void serialEvent() {
   String input = Serial.readStringUntil('\n');
 
+  //output small command reference
   if(input == "help") {
     Serial.println("Command reference");
     Serial.println("Set wifi-config: $<SSID>:<PASSWORD>");
@@ -45,17 +44,18 @@ void serialEvent() {
   }
 
   switch(input.charAt(0)) {
+    //switch to config parser
     case '$': ser_config(input.substring(1)); break;
+    //switch to command parser
     case '&': get_functions(input.substring(1)); break;
     default: Serial.println(MSG_FAIL); break;
   }
 }
 
 
-
-
 void serial_loop() {
   if(Serial.available() > 0) {
+    //run serialEvent() if data is detected
     serialEvent();
   }
 }
