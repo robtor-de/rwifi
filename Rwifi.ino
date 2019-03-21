@@ -1,18 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
 #include <WiFiUdp.h>
-#include <ESP8266WiFiMulti.h>
 #include "credentials.h"
 #include "network_interfacer.h"
 #include "serial_interfacer.h"
-#include "emergency.h"
 
 
-const int TRYCOUNT = 2;
-const int TRYDELAY = 1000;
-const int SERIALTIMEOUT = 2000;
-const int RECONNECTTRY = 500; //5000
-const int MAXRECONNECT = 3;  //20
+const int TRYCOUNT = 2;                //how often should the Module try to connect when started up ?
+const int TRYDELAY = 1000;             //how much delay should be between the reconnect-tries ?
+const int SERIALTIMEOUT = 2000;        //set the serial timeout for the module (when config changed wia serial)
+const int RECONNECTTRY = 30000;          //how often should be checked if the module is still connected ? (ms)
+const int MAXRECONNECT = 10;            //maximal number of reconnect tries after the connection was lost
 
 
 int rc_count = 0;
