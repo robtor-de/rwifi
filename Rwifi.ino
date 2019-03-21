@@ -68,9 +68,10 @@ void wifi_loop() {
   if((millis() - loop_millis) >= RECONNECTTRY) {
     loop_millis = millis();
     if(WiFi.status() != WL_CONNECTED) {
-      connect_sta();
-      Serial.println("#reconnect");
-      rc_count++;
+      Serial.println("#fail");  //if not connected, then try to reconnect
+      if(!connect_sta()) {
+        rc_count++;
+      }
     }
   }
 
