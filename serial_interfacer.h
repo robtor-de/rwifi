@@ -7,9 +7,9 @@ void ser_config(String confstring) {
     Serial.println(ssid);
     Serial.println(password);
     saveCredentials();
-    Serial.println("#saved");
+    Serial.println(MSG_SAVED);
   } else {
-    Serial.println("#fail");
+    Serial.println(MSG_FAIL);
   }
 }
 
@@ -17,14 +17,14 @@ void get_functions(String querystring) {
   if(querystring == "ip") {
     Serial.println(WiFi.localIP());
   } else if (querystring == "disconnect") {
-    Serial.println("#disconnected");
+    Serial.println(MSG_DISCONNECTED);
     WiFi.disconnect();
   } else if (querystring == "server") {
     startserver();
   } else if (querystring == "closeserver") {
     closeserver();
   } else {
-    Serial.println("#error");
+    Serial.println(MSG_FAIL);
   }
 }
 
@@ -47,7 +47,7 @@ void serialEvent() {
   switch(input.charAt(0)) {
     case '$': ser_config(input.substring(1)); break;
     case '&': get_functions(input.substring(1)); break;
-    default: Serial.println("#unknown"); break;
+    default: Serial.println(MSG_FAIL); break;
   }
 }
 

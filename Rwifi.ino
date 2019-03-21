@@ -1,13 +1,27 @@
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
 #include <WiFiUdp.h>
+
+#define INTERACTIVE //remove this line when module is in builtin mode
+
+
+//network config
+#define UDP_PORT 80
+
+//constants for serial communication messages
+#define MSG_CONNECTED "#connected"
+#define MSG_FAIL "#fail"
+#define MSG_MISSING_CREDENTIALS "#nocredentials"
+#define MSG_INIT "#init"
+#define MSG_UNIT_DISABLED "#disabled"
+#define MSG_DISCONNECTED "#disconnected"
+#define MSG_SAVED "#saved"
+
 #include "credentials.h"
 #include "network_interfacer.h"
 #include "serial_interfacer.h"
 
-#define MSG_CONNECTED "#connected"
-
-
+//constant values for connection control
 const int INITDELAY = 2000;            //initial delay, the module will startup after the entered value (ms)
 const int TRYCOUNT = 2;                //how often should the Module try to connect when started up ?
 const int TRYDELAY = 1000;             //how much delay should be between the reconnect-tries ?
@@ -33,7 +47,7 @@ bool connect_sta() {
     while(trycount <= TRYCOUNT) {
       if(WiFi.status() == WL_CONNECTED) {
         //print connected status
-        Serial.println("#connected");
+        Serial.println(MSG_CONNECTED);
         return true;
       }
       //try after a certain delay
@@ -41,11 +55,11 @@ bool connect_sta() {
       trycount++;
     }
     //output fail state, if connection not established
-    Serial.println("#fail");
+    Serial.println(MSG_FAIL);
     return false;
   } else {
     //print fail state if no wifi credentials were found
-    Serial.println("#nocredenitals");
+    Serial.println(MSG_MISSING_CREDENTIALS);
     return false;
   }
 }
@@ -54,7 +68,7 @@ bool connect_sta() {
 void serial_setup() {
   Serial.begin(115200);
   Serial.setTimeout(SERIALTIMEOUT);
-  Serial.println("#init");
+  Serial.println(MSG_INIT);
 }
 
 //setup function, is executed one, when the module was powered
@@ -70,7 +84,7 @@ void wifi_loop() {
   if((millis() - loop_millis) >= RECONNECTTRY) {
     loop_millis = millis();
     if(WiFi.status() != WL_CONNECTED) {
-      Serial.println("#fail");  //if not connected, then try to reconnect
+      Serial.println(MSG_FAIL);  //if not connected, then try to reconnect
       if(!connect_sta()) {
         rc_count++;
       }
@@ -78,7 +92,7 @@ void wifi_loop() {
   }
 
   if(rc_count >= MAXRECONNECT) {
-    Serial.println("#disabled");
+    Serial.println(MSG_UNIT_DISABLED);
   }
 }
 

@@ -1,7 +1,5 @@
-const int port = 80;
-
+const int port = UDP_PORT;
 char packetBuffer[UDP_TX_PACKET_MAX_SIZE];
-
 WiFiUDP server;
 
 void udp_config(String confstring) {
@@ -13,9 +11,9 @@ void udp_config(String confstring) {
     Serial.println(ssid);
     Serial.println(password);
     saveCredentials();
-    Serial.println("#saved");
+    Serial.println(MSG_SAVED);
   } else {
-    Serial.println("#error");
+    Serial.println(MSG_FAIL);
   }
 }
 
