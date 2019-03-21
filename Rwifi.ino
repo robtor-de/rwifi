@@ -80,8 +80,8 @@ void wifi_loop() {
   }
 }
 
+//this function runs repeadedly and loops all necessary functions
 void loop() {
-  // put your main code here, to run repeatedly:
   serial_loop();
   wifi_loop();
   network_loop();
