@@ -8,8 +8,12 @@ void udp_config(String confstring) {
   if(d != -1) {
     confstring.substring(0, d).toCharArray(ssid, 32);
     confstring.substring(d+1).toCharArray(password, 32);
-    Serial.println(ssid);
-    Serial.println(password);
+
+    #ifdef INTERACTIVE      //print saved string if in interactive mode
+      Serial.println(ssid);
+      Serial.println(password);
+    #endif
+
     saveCredentials();
     Serial.println(MSG_SAVED);
   } else {
@@ -19,12 +23,12 @@ void udp_config(String confstring) {
 
 void startserver() {
   server.begin(port);
-  Serial.println("#listening");
+  Serial.println(MSG_SERVER_ENABLED);
 }
 
 void closeserver() {
   server.stop();
-  Serial.println("#closed");
+  Serial.println(MSG_SERVER_CLOSED);
 }
 
 void network_loop() {

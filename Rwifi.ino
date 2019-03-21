@@ -16,6 +16,8 @@
 #define MSG_UNIT_DISABLED "#disabled"
 #define MSG_DISCONNECTED "#disconnected"
 #define MSG_SAVED "#saved"
+#define MSG_SERVER_ENABLED "#listening"
+#define MSG_SERVER_CLOSED "#closed"
 
 #include "credentials.h"
 #include "network_interfacer.h"
