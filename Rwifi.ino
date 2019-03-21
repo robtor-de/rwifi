@@ -78,7 +78,7 @@ void wifi_loop() {
   }
 
   if(rc_count >= MAXRECONNECT) {
-    Serial.println("#disabled")
+    Serial.println("#disabled");
   }
 }
 
