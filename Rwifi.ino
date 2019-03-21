@@ -5,6 +5,8 @@
 #include "network_interfacer.h"
 #include "serial_interfacer.h"
 
+#define MSG_CONNECTED "#connected"
+
 
 const int INITDELAY = 2000;            //initial delay, the module will startup after the entered value (ms)
 const int TRYCOUNT = 2;                //how often should the Module try to connect when started up ?
@@ -76,7 +78,7 @@ void wifi_loop() {
   }
 
   if(rc_count >= MAXRECONNECT) {
-    emergency();
+    Serial.println("#disabled")
   }
 }
 

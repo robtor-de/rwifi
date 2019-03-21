@@ -9,7 +9,7 @@ void ser_config(String confstring) {
     saveCredentials();
     Serial.println("#saved");
   } else {
-    Serial.println("#error");
+    Serial.println("#fail");
   }
 }
 
