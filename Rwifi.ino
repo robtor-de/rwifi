@@ -51,6 +51,7 @@ bool connect_sta() {
       if(WiFi.status() == WL_CONNECTED) {
         //print connected status
         Serial.println(MSG_CONNECTED);
+        startserver();
         return true;
       }
       //try after a certain delay
@@ -79,7 +80,6 @@ void setup() {
   delay(INITDELAY); //wait for the init delay to eceed before startup
   serial_setup();
   connect_sta();
-  startserver();
 }
 
 
