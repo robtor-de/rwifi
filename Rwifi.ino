@@ -7,7 +7,7 @@
 #define UDP_PORT 80
 
 //serial config
-#define BAUD_RATE 115200
+#define BAUD_RATE 9600
 
 //constants for serial communication messages
 #define MSG_CONNECTED "#connected"
