@@ -8,12 +8,6 @@ void udp_config(String confstring) {
   if(d != -1) {
     confstring.substring(0, d).toCharArray(ssid, 32);
     confstring.substring(d+1).toCharArray(password, 32);
-
-    #ifdef INTERACTIVE      //print saved string if in interactive mode
-      Serial.println(ssid);
-      Serial.println(password);
-    #endif
-
     saveCredentials();
     Serial.println(MSG_SAVED);
   } else {
