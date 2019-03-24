@@ -79,6 +79,7 @@ void setup() {
   delay(INITDELAY); //wait for the init delay to eceed before startup
   serial_setup();
   connect_sta();
+  startserver();
 }
 
 
