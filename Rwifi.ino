@@ -2,8 +2,6 @@
 #include <EEPROM.h>
 #include <WiFiUdp.h>
 
-#define INTERACTIVE //remove this line when module is in builtin mode
-
 
 //network config
 #define UDP_PORT 80
@@ -28,10 +26,10 @@
 
 //constant values for connection control
 const int INITDELAY = 2000;            //initial delay, the module will startup after the entered value (ms)
-const int TRYCOUNT = 2;                //how often should the Module try to connect when started up ?
+const int TRYCOUNT = 10;                //how often should the Module try to connect when started up ?
 const int TRYDELAY = 1000;             //how much delay should be between the reconnect-tries ?
 const int SERIALTIMEOUT = 2000;        //set the serial timeout for the module (when config changed wia serial)
-const int RECONNECTTRY = 30000;        //how often should be checked if the module is still connected ? (ms)
+const int RECONNECTTRY = 60000;        //how often should be checked if the module is still connected ? (ms)
 const int MAXRECONNECT = 10;           //maximal number of reconnect tries after the connection was lost
 
 
