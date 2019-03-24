@@ -25,7 +25,7 @@
 #include "serial_interfacer.h"
 
 //constant values for connection control
-const int INITDELAY = 2000;            //initial delay, the module will startup after the entered value (ms)
+const int INITDELAY = 7500;            //initial delay, the module will startup after the entered value (ms)
 const int TRYCOUNT = 10;                //how often should the Module try to connect when started up ?
 const int TRYDELAY = 1000;             //how much delay should be between the reconnect-tries ?
 const int SERIALTIMEOUT = 2000;        //set the serial timeout for the module (when config changed wia serial)
